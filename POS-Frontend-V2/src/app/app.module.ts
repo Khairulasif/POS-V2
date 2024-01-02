@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PurchaseComponent } from './purchase/purchase.component';
+import { AddsupplierComponent } from './addsupplier/addsupplier.component';
 
 
 
@@ -17,6 +18,8 @@ import { PurchaseComponent } from './purchase/purchase.component';
     DashboardComponent,
     SidebarComponent,
     PurchaseComponent,
+    AddsupplierComponent
+   
     
 
   ],

@@ -14,8 +14,11 @@ public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long supplierId;
-    @Enumerated(EnumType.STRING)
-    private SupplierType supplierType;
+//    @Enumerated(EnumType.STRING)
+//    private SupplierType supplierType;
+
+    @Column(name = "supplier_type")
+    private String supplierType;
 
     @Column(name = "supplier_name")
     private String supplierName;

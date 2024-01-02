@@ -29,4 +29,8 @@ public class SupplierService {
     public Supplier supplierGetById(Long id) {
         return this.supplierRepository.findById(id).orElse(new Supplier());
     }
+
+    public List<Supplier> getSuppliersByType(String supplierType) {
+        return supplierRepository.findBySupplierType(supplierType);
+    }
 }

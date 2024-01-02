@@ -35,4 +35,9 @@ public class SupplierController {
         Supplier supplier = this.supplierService.supplierGetById(id);
         return supplier;
     }
+
+    @GetMapping("/getSuppliersByType/{type}")
+    public List<Supplier> getSuppliersByType(@PathVariable("type") String supplierType) {
+        return supplierService.getSuppliersByType(supplierType);
+    }
 }
