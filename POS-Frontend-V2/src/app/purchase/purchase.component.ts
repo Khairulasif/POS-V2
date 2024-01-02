@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SupplierList } from './SupplierListModel';
 
 @Component({
   selector: 'app-purchase',
@@ -9,10 +10,14 @@ export class PurchaseComponent implements OnInit{
 
 
 
-
+  supplierList!: SupplierList;
 
   
+
+
   ngOnInit(): void {
+
+
    
   }
 
