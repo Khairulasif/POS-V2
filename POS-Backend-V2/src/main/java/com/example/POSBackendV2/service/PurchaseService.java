@@ -28,5 +28,15 @@ public class PurchaseService {
     }
 
 
+    public void updatePurchaseStatusByProductId(Long productId) {
+        Purchase purchase = purchaseRepository.findByProductId(productId);
+
+        if (purchase != null) {
+            purchase.setStatus(true);
+            purchaseRepository.save(purchase);
+        } else {
+
+        }
+    }
 
 }

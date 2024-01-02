@@ -51,8 +51,8 @@ public class Product {
     @Column(name = "grossCost")
     private int grossCost;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "purchase_id") // This references the Purchase entity
+//    @ManyToOne
+//    @JoinColumn(name = "purchase_id")
 //    private Purchase purchase;
 
 }

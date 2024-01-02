@@ -21,13 +21,13 @@ public class Purchase {
 
     @Column(name = "delivery_address")
     private String deliveryAddress;
-    private boolean status = true;
+    private boolean status = false;
     @ManyToOne
     @JoinColumn(name = "supplierId")
     private Supplier supplier;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "purchase_id") // This will create a column in the Product table to store the Purchase ID
+    @JoinColumn(name = "purchase_id")
     private List<Product> products;
 
 }
