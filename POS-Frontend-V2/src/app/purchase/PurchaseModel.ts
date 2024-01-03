@@ -9,30 +9,30 @@ export interface Supplier {
 
 export interface Product {
   productId: number;
-  slNumber: number;
+  slNumber?: number;
   productCategory: string;
   productName: string;
   registrationNo: string;
   chassisNumber: string;
   engineNumber: string;
   cubicCapacity: string;
-  noOfTyres: number;
-  numberOfCylinders: number;
+  noOfTyres?: number;
+  numberOfCylinders?: number;
   yearOfManufacture: string;
   body: string;
-  mileage: number;
+  mileage?: number;
   drive: string;
-  seatingCapacity: number;
+  seatingCapacity?: number;
   fuelType: string;
   exteriorColor: string;
   carFeatures: string;
   exportedFrom: string;
-  tradePrice: number;
-  tax: number;
-  vat: number;
+  tradePrice?: number;
+  tax?: number;
+  vat?: number;
   payment: string;
-  discount: number;
-  grossCost: number;
+  discount?: number;
+  grossCost?: number;
 }
 
 export interface Purchase {

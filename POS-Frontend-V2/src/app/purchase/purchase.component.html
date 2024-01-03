@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="form-group">
                                   <label for="supplierName">Supplier Name</label>
-                                  <select class="form-control" [(ngModel)]= "purchase.supplier.supplierId" name="supplierName">
+                                  <select class="form-control" [(ngModel)]= "selectedSupplier" name="supplierName">
                                     <option value="" disabled selected>Choose Supplier Name</option>
                                     <option *ngFor= "let v of supplierList" [ngValue]="v.supplierId">{{v.supplierName}}</option>
                                   </select>
@@ -142,8 +142,8 @@
                                 </div>
                                 <div class="form-group" >
                                     <label for="chassisNumber{{ i }}">Chassis Number</label>
-                                    <input type="text" class="form-control" id="chassisNumber{{ i }}" 
-                                    [(ngModel)]="product.chassisNumber" name="chassisNumber{{ i }}"
+                                    <input type= "text" class= "form-control" id= "chassisNumber{{ i }}" placeholder= "Chassis Number"
+                                    [(ngModel)]= "product.chassisNumber" name= "chassisNumber{{ i }}"
                                     >
                                 </div>
                                 <div class="form-group">
@@ -290,7 +290,7 @@
                                 <div class="form-group">
                                     <label  for="tradePrice{{ i }}">Trade Price</label>
                                     <input type="number" class="form-control" id="tradePrice{{ i }}"
-                                    [(ngModel)]= "product.tradePrice" name="tradePrice{{ i }}"  placeholder="Trade Price">
+                                    [(ngModel)]= "purchase.products[0].tradePrice" name="tradePrice{{ i }}"  placeholder="Trade Price"  (input)="calculateTotalAmount()">
                                 </div>
 
                                 <div class="form-group" >
@@ -309,7 +309,7 @@
                                 <div class="form-group" >
                                     <label for="discount{{ i }}">Discount</label>
                                     <input type="number" class="form-control" id="discount{{ i }}" placeholder="Discount"
-                                    [(ngModel)]= "product.discount" name="discount{{ i }}"   >
+                                    [(ngModel)]= "purchase.products[0].discount" name="discount{{ i }}"  (input)="calculateTotalAmount()" >
                                 </div>
 
 
@@ -318,14 +318,14 @@
                             <div class="col-md-6">
 
                                 <div class="form-group" >
-                                    <label for="vat{{ i }}">VAT</label>
+                                    <label for="vat{{ i }}">VAT(%)</label>
                                     <input type="number" class="form-control" id="vat{{ i }}" placeholder="VAT"
-                                    [(ngModel)]= "product.vat" name="vat{{ i }}"  >
+                                    [(ngModel)]= "purchase.products[0].vat" name="vat{{ i }}" (input)="calculateTotalAmount()" >
                                 </div>
                                 <div class="form-group" >
-                                    <label for="tax{{ i }}">TAX</label>
+                                    <label for="tax{{ i }}">TAX(%)</label>
                                     <input type="number" class="form-control" id="tax{{ i }}" placeholder="TAX"
-                                    [(ngModel)]= "product.tax" name="tax{{ i }}"  >
+                                    [(ngModel)]= "purchase.products[0].tax" name="tax{{ i }}" (input)="calculateTotalAmount()" >
                                 </div>
                                 <div class="form-group" >
                                     <label for="grossCost{{ i }}">Gross Price</label>

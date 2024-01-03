@@ -27,49 +27,51 @@ export class PurchaseComponent implements OnInit{
     status: true,
     supplier: {
       supplierId: 0,
-      supplierType: 'string',
-      supplierName: 'string',
-      contactPerson: 'string',
-      email: 'string',
-      phoneNumber: 'string'
+      supplierType: '',
+      supplierName: '',
+      contactPerson: '',
+      email: '',
+      phoneNumber: ''
     },
     products: [
       {
         productId: 0,
-        slNumber: 0,
+        slNumber: undefined,
         productCategory: 'SEDAN',
-        productName: 'string',
-        registrationNo: 'string',
-        chassisNumber: 'string',
-        engineNumber: 'string',
-        cubicCapacity: 'string',
-        noOfTyres: 0,
-        numberOfCylinders: 0,
+        productName: '',
+        registrationNo: '',
+        chassisNumber: '',
+        engineNumber: '',
+        cubicCapacity: '',
+        noOfTyres: undefined,
+        numberOfCylinders: undefined,
         yearOfManufacture: new Date().toISOString(),
-        body: 'string',
-        mileage: 0,
-        drive: 'string',
-        seatingCapacity: 0,
-        fuelType: 'string',
-        exteriorColor: 'string',
-        carFeatures: 'string',
-        exportedFrom: 'string',
-        tradePrice: 0,
-        tax: 0,
-        vat: 0,
-        payment: 'string',
-        discount: 0,
-        grossCost: 0
+        body: '',
+        mileage: undefined,
+        drive: '',
+        seatingCapacity: undefined,
+        fuelType: '',
+        exteriorColor: '',
+        carFeatures: '',
+        exportedFrom: '',
+        tradePrice: undefined,
+        tax: undefined,
+        vat: undefined,
+        payment: '',
+        discount: undefined,
+        grossCost: undefined
       }
     ]
   };
+
+ 
 
   constructor(private service: PurchaseService,  private router: Router, 
     private formBuilder: FormBuilder ) {}
 
 
   ngOnInit(): void {
-    // this.buildForm();
+   
   }
 
 
@@ -94,11 +96,64 @@ export class PurchaseComponent implements OnInit{
       }
     );
   }
+
+  // calculateTotalAmount(): void {
+  //   // Adjust this according to your actual ngModel bindings
+  //   const tradePrice = this.purchase.products[0].tradePrice || 0;
+  //   const discount = this.purchase.products[0].discount || 0;
+  //   const vat = this.purchase.products[0].vat || 0;  // Add this line
+  //   const tax = this.purchase.products[0].tax || 0;  // Add this line
+  
+  //   // Calculate the gross cost by adding VAT and tax
+  //   const grossCost = (tradePrice + vat + tax) - discount;
+  
+  //   // Update the grossCost in the ngModel
+  //   this.purchase.products[0].grossCost = grossCost;
+  // }
+
+  calculateTotalAmount(): void {
+    // Adjust this according to your actual ngModel bindings
+    const tradePrice = this.purchase.products[0].tradePrice || 0;
+    const discount = this.purchase.products[0].discount || 0;
+    const vatPercentage = this.purchase.products[0].vat || 0;  // Assuming vat is provided as a percentage
+    const taxPercentage = this.purchase.products[0].tax || 0;  // Assuming tax is provided as a percentage
+  
+    // Convert percentages to decimal values
+    const vatMultiplier = (1 + vatPercentage / 100);
+    const taxMultiplier = (1 + taxPercentage / 100);
+  
+    // Calculate the gross cost by adding VAT and tax
+    const grossCost = (tradePrice * vatMultiplier * taxMultiplier) - discount;
+  
+    // Update the grossCost in the ngModel
+    this.purchase.products[0].grossCost = grossCost;
+  }
+
+  // calculateTotalAmount(): void {
+  //   // Adjust this according to your actual ngModel bindings
+  //   const tradePrice = this.purchase.products[0].tradePrice || 0;
+  //   const discount = this.purchase.products[0].discount || 0;
+  //   const vatPercentage = this.purchase.products[0].vat || 0;  // Assuming vat is provided as a percentage
+  //   const taxPercentage = this.purchase.products[0].tax || 0;  // Assuming tax is provided as a percentage
+  
+  //   // Convert percentages to decimal values
+  //   const vatMultiplier = (1 + vatPercentage / 100);
+  //   const taxMultiplier = (1 + taxPercentage / 100);
+  
+  //   // Calculate the gross cost by adding VAT and tax only on the trade price
+  //   const grossCost = (tradePrice * vatMultiplier) + (tradePrice * taxMultiplier) - discount;
+  
+  //   // Update the grossCost in the ngModel
+  //   this.purchase.products[0].grossCost = grossCost;
+  // }
+  
+  
+  
   
 
   savePurchase(): void {
-    console.log(this.purchase.supplier.supplierId);
-    
+    console.log(this.selectedSupplier);
+    this.purchase.supplier.supplierId = this.selectedSupplier;
     this.service.savePurchase(this.purchase)
       .subscribe((response) => {
         console.log('Purchase saved successfully:', response);
