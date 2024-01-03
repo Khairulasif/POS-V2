@@ -16,6 +16,8 @@ export class PurchaseComponent implements OnInit{
 
   supplierList: SupplierList[] = [];
 
+  selectedSupplier!: number;
+
   supplierType!: string;
 
   purchase: Purchase = {
@@ -72,63 +74,19 @@ export class PurchaseComponent implements OnInit{
 
 
 
-  // buildForm() {
-  //   this.purchaseForm = this.formBuilder.group({
-  //     purchase: this.formBuilder.group({
-  //       purchaseDate: ['', Validators.required],
-  //       price: ['', Validators.required],
-  //       payment: ['', Validators.required],
-  //       discount: ['', Validators.required],
-  //       totalAmount: ['', Validators.required],
-  //       deliveryAddress: ['', Validators.required],
-  //       warranty: ['', Validators.required],
-  //     }),
-  //     stock: this.formBuilder.group({
-  //       quantity: ['', Validators.required],
-  //     }),
-  //     product: this.formBuilder.group({
-  //       productName: ['', Validators.required],
-  //       productType: ['', Validators.required],
-  //       model: ['', Validators.required],
-  //     }),
-  //     productDetails: this.formBuilder.group({
-  //       registrationNo: ['', Validators.required],
-  //       chassisNumber: ['', Validators.required],
-  //       engineNumber: ['', Validators.required],
-  //       cubicCapacity: ['', Validators.required],
-  //       noOfTyres: ['', Validators.required],
-  //       numberOfCylinders: ['', Validators.required],
-  //       yearOfManufacture: ['', Validators.required],
-  //       mileage: ['', Validators.required],
-  //       drive: ['', Validators.required],
-  //       seatingCapacity: ['', Validators.required],
-  //       fuelType: ['', Validators.required],
-  //       exteriorColor: ['', Validators.required],
-  //       carFeatures: ['', Validators.required],
-  //       body: ['', Validators.required],
-  //       exportedFrom: ['', Validators.required],
-  //       }),
-  //     supplier: this.formBuilder.group({
-  //       supplierId: [],
-  //     }),
-  //   });
-
-  //   // this.purchaseForm.get('purchase.discount')?.valueChanges.subscribe(discount => {
-  //   //   this.calculateTotalAmount(discount);
-  //   // });
-  // }
-
+  
   onSupplierTypeChange() {
     if (this.supplierType) {
       this.getSuppliersByType(this.supplierType);
     }
   }
 
+  
+
   getSuppliersByType(supplierType: string) {
     this.service.getSuppliersByType(supplierType).subscribe(
       (data: SupplierList[]) => {
         this.supplierList = data;
-        console.log(this.supplierList);
         
       },
       (error) => {
@@ -136,8 +94,11 @@ export class PurchaseComponent implements OnInit{
       }
     );
   }
+  
 
   savePurchase(): void {
+    console.log(this.purchase.supplier.supplierId);
+    
     this.service.savePurchase(this.purchase)
       .subscribe((response) => {
         console.log('Purchase saved successfully:', response);
@@ -147,5 +108,6 @@ export class PurchaseComponent implements OnInit{
         // Handle error
       });
   }
+  
 
 }

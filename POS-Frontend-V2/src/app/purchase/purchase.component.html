@@ -62,7 +62,7 @@
         </div>
     </section>
     <section class="content">
-        <form>
+        <form (ngSubmit)="savePurchase()">
             <!-- Product Section -->
             <div class="container-fluid">
                 <div class="card card-default">
@@ -78,14 +78,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Purchase Date</label>
+                                    <label for="purchaseDate">Purchase Date</label>
                                     <input type="date" class="form-control" id="purchaseDate" placeholder="Purchase Date"
-                                        >
+                                    [(ngModel)]="purchase.purchaseDate" name="purchaseDate"  >
                                 </div>
                                 <div class="form-group">
-                                    <label>Delivery Address</label>
+                                    <label for="deliveryAddress">Delivery Address</label>
                                     <textarea class="form-control" id="deliveryAddress" placeholder="Delivery Address"
-                                     ></textarea>
+                                    [(ngModel)]="purchase.deliveryAddress" name="deliveryAddress"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -100,10 +100,10 @@
                                   </select>
                                 </div>
                                 <div class="form-group">
-                                  <label>Supplier Name</label>
-                                  <select class="form-control" [(ngModel)]= "supplierList" name="supplierId" required>
+                                  <label for="supplierName">Supplier Name</label>
+                                  <select class="form-control" [(ngModel)]= "purchase.supplier.supplierId" name="supplierName">
                                     <option value="" disabled selected>Choose Supplier Name</option>
-                                    <option *ngFor="let v of supplierList" [ngValue]="v.supplierId">{{v.supplierName}}</option>
+                                    <option *ngFor= "let v of supplierList" [ngValue]="v.supplierId">{{v.supplierName}}</option>
                                   </select>
                                 </div>
                               </div>
@@ -114,6 +114,8 @@
             </div>
 
             <!-- Product Details Section -->
+            <div *ngFor="let product of purchase.products; let i=index">
+                <h4>Product {{ i + 1 }}</h4>
             <div class="container-fluid">
                 <div class="card card-default">
                     <div class="card-header">
@@ -124,37 +126,39 @@
                             </button>
                         </div>
                     </div>
+                    
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Serial No</label>
-                                    <input type="number" class="form-control" id="serialNo"
-                                        placeholder="Serial No">
+                                    <label for="serialNo{{ i }}">Serial No</label>
+                                    <input type="number" class="form-control" id="serialNo{{ i }}"
+                                        placeholder="Serial No" [(ngModel)]= "product.slNumber" name="serialNo{{ i }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Product Name</label>
-                                    <input type="text" class="form-control" id="productName" placeholder="Product Name"
-                                    >
+                                    <label for="productName{{ i }}">Product Name</label>
+                                    <input type="text" class="form-control" id="productName{{ i }}" placeholder="Product Name"
+                                    [(ngModel)]= "product.productName" name="productName{{ i }}">
                                 </div>
                                 <div class="form-group" >
-                                    <label>Chassis Number</label>
-                                    <input type="text" class="form-control" id="chassisNo" placeholder="Chassis Number"
+                                    <label for="chassisNumber{{ i }}">Chassis Number</label>
+                                    <input type="text" class="form-control" id="chassisNumber{{ i }}" 
+                                    [(ngModel)]="product.chassisNumber" name="chassisNumber{{ i }}"
                                     >
                                 </div>
                                 <div class="form-group">
-                                    <label>Engine Number</label>
-                                    <input type="text" class="form-control" id="engineNo" placeholder="Engine Number"
-                                    >
+                                    <label for="engineNumber{{ i }}">Engine Number</label>
+                                    <input type="text" class="form-control" placeholder="Engine Number"placeholder="Engine No"
+                                    id="engineNumber{{ i }}" [(ngModel)]="product.engineNumber" name="engineNumber{{ i }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Number of Cylinders</label>
-                                    <input type="number" class="form-control" id="numberOfCylinders"
-                                        placeholder="Number of Cylinders">
+                                    <label  for="numberOfCylinders{{ i }}">Number of Cylinders</label>
+                                    <input type="number" class="form-control" id="cubicCapacity{{ i }}"
+                                        placeholder="Number of Cylinders"  [(ngModel)]= "product.numberOfCylinders" name="numberOfCylinders{{ i }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Body</label>
-                                    <select class="form-control" id="body">
+                                    <label for="body{{ i }}">Body</label>
+                                    <select class="form-control" id="body{{ i }}" [(ngModel)]= "product.body" name="body{{ i }}">
                                         <option value="" disabled selected>Choose Body Material</option>
                                         <option value="steel">Steel</option>
                                         <option value="aluminum">Aluminum</option>
@@ -163,20 +167,20 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Mileage</label>
-                                    <input type="number" class="form-control" id="mileage" placeholder="Mileage"
-                                        >
+                                    <label for="mileage{{ i }}">Mileage</label>
+                                    <input type="number" class="form-control" id="mileage{{ i }}" placeholder="Mileage"
+                                    [(ngModel)]= "product.mileage" name="mileage{{ i }}"   >
                                 </div>
 
                                 <div class="form-group" >
-                                    <label>Seating Capacity</label>
-                                    <input type="number" class="form-control" id="seatingCapacity"
-                                        placeholder="Seating Capacity" >
+                                    <label for="seatingCapacity{{ i }}">Seating Capacity</label>
+                                    <input type="number" class="form-control" id="seatingCapacity{{ i }}"
+                                        placeholder="Seating Capacity" [(ngModel)]= "product.seatingCapacity" name="seatingCapacity{{ i }}">
                                 </div>
 
                                 <div class="form-group" >
-                                    <label>Exterior Color</label>
-                                    <select class="form-control" id="exteriorColor" >
+                                    <label for="exteriorColor{{ i }}">Exterior Color</label>
+                                    <select class="form-control" id="exteriorColor{{ i }}" [(ngModel)]= "product.exteriorColor" name="exteriorColor{{ i }}">
                                         <option value="" disabled selected>Choose Exterior Color</option>
                                         <option value="red">Red</option>
                                         <option value="blue">Blue</option>
@@ -190,43 +194,43 @@
                             <div class="col-md-6">
                                 
                                 <div class="form-group" >
-                                    <label>Product Category</label>
-                                    <select class="form-control" id="drive">
+                                    <label for="productCategory{{ i }}">Product Category</label>
+                                    <select class="form-control" id="productCategory{{ i }}" [(ngModel)]= "product.productCategory" name="productCategory{{ i }}">
                                         <option value="" disabled selected>Choose Drive Type</option>
-                                        <option value="front-wheel-drive">Front Wheel Drive</option>
+                                        <option value="SEDAN">SEDAN</option>
                                         <option value="rear-wheel-drive">Rear Wheel Drive</option>
                                         <option value="all-wheel-drive">All Wheel Drive</option>
                                         <option value="four-wheel-drive">Four Wheel Drive</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Registration No</label>
-                                    <input type="number" class="form-control" id="registrationNo"
-                                        placeholder="Registration No">
+                                    <label for="registrationNo{{ i }}">Registration No</label>
+                                    <input type="text" class="form-control" id="registrationNo{{ i }}"
+                                        placeholder="Registration No" [(ngModel)]= "product.registrationNo" name="registrationNo{{ i }}">
                                 </div>
                                 
 
                                 <div class="form-group">
-                                    <label>Cubic Capacity</label>
-                                    <input type="text" class="form-control" id="cubicCapacity"
-                                        placeholder="Cubic Capacity">
+                                    <label for="cubicCapacity{{ i }}">Cubic Capacity</label>
+                                    <input type="text" class="form-control"
+                                    id="cubicCapacity{{ i }}" [(ngModel)]="product.cubicCapacity" name="cubicCapacity{{ i }}"  placeholder="Cubic Capacity">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Number of Tyres</label>
-                                    <input type="number" class="form-control" id="noOfTyres"
-                                        placeholder="Number of Tyres">
+                                    <label for="noOfTyres{{ i }}">Number of Tyres</label>
+                                    <input type="number" class="form-control" id="noOfTyres{{ i }}"
+                                    [(ngModel)]="product.noOfTyres" name="noOfTyres{{ i }}"  placeholder="Cubic Capacity"  placeholder="Number of Tyres">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Year of Manufacture</label>
-                                    <input type="date" class="form-control" id="yearOfManufacture"
-                                        placeholder="Year of Manufacture">
+                                    <label for="yearOfManufacture{{ i }}">Year of Manufacture</label>
+                                    <input type="date" class="form-control" id="yearOfManufacture{{ i }}"
+                                    [(ngModel)]= "product.yearOfManufacture" name="yearOfManufacture{{ i }}"  placeholder="Year of Manufacture">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Drive</label>
-                                    <select class="form-control" id="drive">
+                                    <label for="drive{{ i }}">Drive</label>
+                                    <select class="form-control" id="drive{{ i }}" [(ngModel)]= "product.drive" name="drive{{ i }}">
                                         <option value="" disabled selected>Choose Drive Type</option>
                                         <option value="front-wheel-drive">Front Wheel Drive</option>
                                         <option value="rear-wheel-drive">Rear Wheel Drive</option>
@@ -236,9 +240,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Fuel Type</label>
-                                    <select class="form-control" id="fuelType"
-                                        placeholder="Fuel Type">
+                                    <label for="fuelType{{ i }}">Fuel Type</label>
+                                    <select class="form-control" id="fuelType{{ i }}"
+                                    [(ngModel)]= "product.fuelType" name="fuelType{{ i }}"  placeholder="Fuel Type">
                                         <option value="" disabled selected>Choose Fuel Type</option>
                                         <option value="petrol">Petrol</option>
                                         <option value="diesel">Diesel</option>
@@ -248,8 +252,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Exported From</label>
-                                    <select class="form-control" id="exportedFrom">
+                                    <label for="exportedFrom{{ i }}">Exported From</label>
+                                    <select class="form-control" id="exportedFrom{{ i }}" [(ngModel)]= "product.exportedFrom" name="exportedFrom{{ i }}">
                                         <option value="" disabled selected>Choose Country</option>
                                         <option value="Japan">Japan</option>
                                         <option value="Dubai">Dubai</option>
@@ -260,9 +264,9 @@
                             </div>
                             <div class="col-12 col-sm-12">
                                 <div class="form-group">
-                                    <label>Car Features</label>
-                                    <textarea class="form-control" id="carFeatures" placeholder="Car Features"
-                                    ></textarea>
+                                    <label for="carFeatures{{ i }}">Car Features</label>
+                                    <textarea class="form-control" id="carFeatures{{ i }}" placeholder="Car Features"
+                                    [(ngModel)]= "product.carFeatures" name="carFeatures{{ i }}"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -284,14 +288,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Trade Price</label>
-                                    <input type="number" class="form-control" id="tradePrice"
-                                        placeholder="Trade Price">
+                                    <label  for="tradePrice{{ i }}">Trade Price</label>
+                                    <input type="number" class="form-control" id="tradePrice{{ i }}"
+                                    [(ngModel)]= "product.tradePrice" name="tradePrice{{ i }}"  placeholder="Trade Price">
                                 </div>
 
                                 <div class="form-group" >
-                                    <label>Payment Method</label>
-                                    <select class="form-control" id="payment" >
+                                    <label for="payment{{ i }}">Payment Method</label>
+                                    <select class="form-control" id="payment{{ i }}" [(ngModel)]= "product.payment" name="payment{{ i }}">
                                         <option value="" disabled selected>Select Payment Method</option>
                                         <option value="cash">Cash</option>
                                         <option value="cheque">Cheque</option>
@@ -303,9 +307,9 @@
                                 </div>
 
                                 <div class="form-group" >
-                                    <label>Discount</label>
-                                    <input type="number" class="form-control" id="discount" placeholder="Discount"
-                                        >
+                                    <label for="discount{{ i }}">Discount</label>
+                                    <input type="number" class="form-control" id="discount{{ i }}" placeholder="Discount"
+                                    [(ngModel)]= "product.discount" name="discount{{ i }}"   >
                                 </div>
 
 
@@ -314,19 +318,19 @@
                             <div class="col-md-6">
 
                                 <div class="form-group" >
-                                    <label>VAT</label>
-                                    <input type="number" class="form-control" id="vat" placeholder="VAT"
-                                        >
+                                    <label for="vat{{ i }}">VAT</label>
+                                    <input type="number" class="form-control" id="vat{{ i }}" placeholder="VAT"
+                                    [(ngModel)]= "product.vat" name="vat{{ i }}"  >
                                 </div>
                                 <div class="form-group" >
-                                    <label>TAX</label>
-                                    <input type="number" class="form-control" id="tax" placeholder="TAX"
-                                        >
+                                    <label for="tax{{ i }}">TAX</label>
+                                    <input type="number" class="form-control" id="tax{{ i }}" placeholder="TAX"
+                                    [(ngModel)]= "product.tax" name="tax{{ i }}"  >
                                 </div>
                                 <div class="form-group" >
-                                    <label>Gross Price</label>
-                                    <input type="number" class="form-control" id="grossPrice" placeholder="Gross Price"
-                                        >
+                                    <label for="grossCost{{ i }}">Gross Price</label>
+                                    <input type="number" class="form-control" id="grossCost{{ i }}" placeholder="Gross Price"
+                                    [(ngModel)]= "product.grossCost" name="grossCost{{ i }}"  >
                                 </div>
 
                             </div>
@@ -334,7 +338,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
             <div class="card-footer d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary w-50 mx-auto">Submit</button>
             </div>
