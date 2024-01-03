@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class PurchaseService {
 
-  private apiUrl = 'http://localhost:8080/api/suppliers';
+  private apiUrl = 'http://localhost:8080/supplier';
 
   constructor(private httpClient: HttpClient) {}
 

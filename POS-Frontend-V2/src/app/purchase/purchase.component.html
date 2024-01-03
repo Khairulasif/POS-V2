@@ -40,34 +40,33 @@
                                 <div class="form-group">
                                     <label>Purchase Date</label>
                                     <input type="date" class="form-control" id="purchaseDate" placeholder="Purchase Date"
-                                       formControlName = "purchaseDate" >
+                                        >
                                 </div>
                                 <div class="form-group">
                                     <label>Delivery Address</label>
                                     <textarea class="form-control" id="deliveryAddress" placeholder="Delivery Address"
-                                    formControlName = "deliveryAddress" ></textarea>
+                                     ></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Supplier Type</label>
-                                    <select class="form-control" formControlName="supplierType">
-                                        <option value="" disabled selected>Choose Supplier Type</option>
-                                        <option value="vendor">Vendor</option>
-                                        <option value="manufacturer">Manufacturer</option>
-                                        <option value="showroom">Show Room</option>
-                                        <option value="individual">Individual</option>
-                                        
-                                    </select>
+                                  <label>Supplier Type</label>
+                                  <select class="form-control" [(ngModel)]="supplierType" name="supplierType" (ngModelChange)="onSupplierTypeChange()">
+                                    <option value="" disabled selected>Choose Supplier Type</option>
+                                    <option value="vendor">Vendor</option>
+                                    <option value="manufacturer">Manufacturer</option>
+                                    <option value="showroom">Show Room</option>
+                                    <option value="individual">Individual</option>
+                                  </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Supplier Name</label>
-                                    <select class="form-control" formControlName="supplierId">
-                                        <option value="" disabled selected>Choose Supplier Name</option>
-                                        <!-- <option *ngFor="let v of supplierList" [value]="v.supplierId">{{v.supplierName}}</option> -->
-                                    </select>
+                                  <label>Supplier Name</label>
+                                  <select class="form-control" [(ngModel)]= "supplierList" name="supplierId" required>
+                                    <option value="" disabled selected>Choose Supplier Name</option>
+                                    <option *ngFor="let v of supplierList" [ngValue]="v.supplierId">{{v.supplierName}}</option>
+                                  </select>
                                 </div>
-                            </div>
+                              </div>
                            
                         </div>
                     </div>
@@ -91,31 +90,31 @@
                                 <div class="form-group">
                                     <label>Serial No</label>
                                     <input type="number" class="form-control" id="serialNo"
-                                        placeholder="Serial No" formControlName="serialNo">
+                                        placeholder="Serial No">
                                 </div>
                                 <div class="form-group">
                                     <label>Product Name</label>
                                     <input type="text" class="form-control" id="productName" placeholder="Product Name"
-                                    formControlName="productName" >
+                                    >
                                 </div>
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group" >
                                     <label>Chassis Number</label>
                                     <input type="text" class="form-control" id="chassisNo" placeholder="Chassis Number"
-                                        formControlName="chassisNumber">
+                                    >
                                 </div>
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Engine Number</label>
                                     <input type="text" class="form-control" id="engineNo" placeholder="Engine Number"
-                                        formControlName="engineNumber">
+                                    >
                                 </div>
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Number of Cylinders</label>
                                     <input type="number" class="form-control" id="numberOfCylinders"
-                                        placeholder="Number of Cylinders" formControlName="numberOfCylinders">
+                                        placeholder="Number of Cylinders">
                                 </div>
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Body</label>
-                                    <select class="form-control" id="body" formControlName="body">
+                                    <select class="form-control" id="body">
                                         <option value="" disabled selected>Choose Body Material</option>
                                         <option value="steel">Steel</option>
                                         <option value="aluminum">Aluminum</option>
@@ -123,21 +122,21 @@
                                         <option value="fiberglass">Fiberglass</option>
                                     </select>
                                 </div>
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Mileage</label>
                                     <input type="number" class="form-control" id="mileage" placeholder="Mileage"
-                                        formControlName="mileage">
+                                        >
                                 </div>
 
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group" >
                                     <label>Seating Capacity</label>
                                     <input type="number" class="form-control" id="seatingCapacity"
-                                        placeholder="Seating Capacity" formControlName="seatingCapacity">
+                                        placeholder="Seating Capacity" >
                                 </div>
 
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group" >
                                     <label>Exterior Color</label>
-                                    <select class="form-control" id="exteriorColor" formControlName="exteriorColor">
+                                    <select class="form-control" id="exteriorColor" >
                                         <option value="" disabled selected>Choose Exterior Color</option>
                                         <option value="red">Red</option>
                                         <option value="blue">Blue</option>
@@ -150,9 +149,9 @@
                             </div>
                             <div class="col-md-6">
                                 
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group" >
                                     <label>Product Category</label>
-                                    <select class="form-control" id="drive" formControlName="drive">
+                                    <select class="form-control" id="drive">
                                         <option value="" disabled selected>Choose Drive Type</option>
                                         <option value="front-wheel-drive">Front Wheel Drive</option>
                                         <option value="rear-wheel-drive">Rear Wheel Drive</option>
@@ -167,27 +166,27 @@
                                 </div>
                                 
 
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Cubic Capacity</label>
                                     <input type="text" class="form-control" id="cubicCapacity"
-                                        placeholder="Cubic Capacity" formControlName="cubicCapacity">
+                                        placeholder="Cubic Capacity">
                                 </div>
 
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Number of Tyres</label>
                                     <input type="number" class="form-control" id="noOfTyres"
-                                        placeholder="Number of Tyres" formControlName="noOfTyres">
+                                        placeholder="Number of Tyres">
                                 </div>
 
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Year of Manufacture</label>
                                     <input type="date" class="form-control" id="yearOfManufacture"
-                                        placeholder="Year of Manufacture" formControlName="yearOfManufacture">
+                                        placeholder="Year of Manufacture">
                                 </div>
 
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Drive</label>
-                                    <select class="form-control" id="drive" formControlName="drive">
+                                    <select class="form-control" id="drive">
                                         <option value="" disabled selected>Choose Drive Type</option>
                                         <option value="front-wheel-drive">Front Wheel Drive</option>
                                         <option value="rear-wheel-drive">Rear Wheel Drive</option>
@@ -196,9 +195,9 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Fuel Type</label>
-                                    <select class="form-control" id="fuelType" formControlName="fuelType"
+                                    <select class="form-control" id="fuelType"
                                         placeholder="Fuel Type">
                                         <option value="" disabled selected>Choose Fuel Type</option>
                                         <option value="petrol">Petrol</option>
@@ -208,9 +207,9 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Exported From</label>
-                                    <select class="form-control" id="exportedFrom" formControlName="exportedFrom">
+                                    <select class="form-control" id="exportedFrom">
                                         <option value="" disabled selected>Choose Country</option>
                                         <option value="Japan">Japan</option>
                                         <option value="Dubai">Dubai</option>
@@ -220,10 +219,10 @@
 
                             </div>
                             <div class="col-12 col-sm-12">
-                                <div class="form-group" formGroupName="productDetails">
+                                <div class="form-group">
                                     <label>Car Features</label>
                                     <textarea class="form-control" id="carFeatures" placeholder="Car Features"
-                                        formControlName="carFeatures"></textarea>
+                                    ></textarea>
                                 </div>
                             </div>
                         </div>
@@ -244,15 +243,15 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group" formGroupName="purchase">
+                                <div class="form-group">
                                     <label>Trade Price</label>
                                     <input type="number" class="form-control" id="tradePrice"
-                                        placeholder="Trade Price" formControlName="tradePrice">
+                                        placeholder="Trade Price">
                                 </div>
 
-                                <div class="form-group" formGroupName="purchase">
+                                <div class="form-group" >
                                     <label>Payment Method</label>
-                                    <select class="form-control" id="payment" formControlName="payment">
+                                    <select class="form-control" id="payment" >
                                         <option value="" disabled selected>Select Payment Method</option>
                                         <option value="cash">Cash</option>
                                         <option value="cheque">Cheque</option>
@@ -263,10 +262,10 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group" formGroupName="purchase">
+                                <div class="form-group" >
                                     <label>Discount</label>
                                     <input type="number" class="form-control" id="discount" placeholder="Discount"
-                                        formControlName="discount">
+                                        >
                                 </div>
 
 
@@ -274,20 +273,20 @@
                             </div>
                             <div class="col-md-6">
 
-                                <div class="form-group" formGroupName="purchase">
+                                <div class="form-group" >
                                     <label>VAT</label>
                                     <input type="number" class="form-control" id="vat" placeholder="VAT"
-                                        formControlName="vat">
+                                        >
                                 </div>
-                                <div class="form-group" formGroupName="purchase">
+                                <div class="form-group" >
                                     <label>TAX</label>
                                     <input type="number" class="form-control" id="tax" placeholder="TAX"
-                                        formControlName="tax">
+                                        >
                                 </div>
-                                <div class="form-group" formGroupName="purchase">
+                                <div class="form-group" >
                                     <label>Gross Price</label>
                                     <input type="number" class="form-control" id="grossPrice" placeholder="Gross Price"
-                                        formControlName="grossPrice">
+                                        >
                                 </div>
 
                             </div>
