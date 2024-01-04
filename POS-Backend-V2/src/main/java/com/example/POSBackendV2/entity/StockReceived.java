@@ -23,7 +23,7 @@ public class StockReceived {
     private long  maxDiscount;
     private boolean  instalment;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
 }
