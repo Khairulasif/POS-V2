@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock,Long> {
-    @Query("SELECT s FROM Stock s WHERE s.productCategory = :productCategory")
-    Stock findByProductCategory(ProductCategory productCategory);
+//    @Query("SELECT s FROM Stock s WHERE s.productCategory = :productCategory")
+//    Stock findByProductCategory(ProductCategory productCategory);
+//Stock findByProductId(Long productId);
+Stock findByProductCategory(ProductCategory productCategory);
 }
