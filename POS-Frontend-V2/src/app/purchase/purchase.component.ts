@@ -24,7 +24,7 @@ export class PurchaseComponent implements OnInit{
     purchaseId: 0,
     purchaseDate: new Date().toISOString(),
     deliveryAddress: '',
-    status: true,
+    status: false,
     supplier: {
       supplierId: 0,
       supplierType: '',
