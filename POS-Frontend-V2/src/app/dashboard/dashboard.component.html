@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v3</h1>
+            <h1 class="m-0">Dashboard</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v3</li>
+              <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -28,15 +28,15 @@
             <div class="card">
               <div class="card-header border-0">
                 <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Online Store Visitors</h3>
+                  <h3 class="card-title">Today's Purchase</h3>
                   <a href="javascript:void(0);">View Report</a>
                 </div>
               </div>
               <div class="card-body">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">820</span>
-                    <span>Visitors Over Time</span>
+                    <span class="text-bold text-lg">{{ purchaseList.length }}</span>
+                    <span>Total Purchases</span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success">
@@ -45,7 +45,48 @@
                     <span class="text-muted">Since last week</span>
                   </p>
                 </div>
-                <!-- /.d-flex -->
+                <div class="row">
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Supplier</th>
+                                    <th>Product</th>
+                                    <th>Type</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let pur of purchaseList">
+                                    
+                                    <td>
+                                        <a href="" [routerLink]="['/getWarrantyService/', pur.purchaseId]">
+                                          <span [ngClass]="{'badge badge-success': pur.status, 'badge badge-danger': !pur.status}">
+                                            {{ pur.status ? 'Received' : 'Not Received' }}
+                                          </span>
+                                        </a>
+                                      </td>
+                                    <td>
+                                        {{pur.supplier.supplierName}}
+                                    </td>
+                                    <td>
+                                        <span *ngFor="let product of pur.products">{{ product.productName
+                                            }}<br></span>
+                                    </td>
+                                    <td>
+                                        <span *ngFor="let product of pur.products">{{ product.productCategory
+                                            }}<br></span>
+                                    </td>
+                                   
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
 
                 <div class="position-relative mb-4">
                   <canvas id="visitors-chart" height="200"></canvas>

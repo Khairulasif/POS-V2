@@ -1,0 +1,92 @@
+
+<app-sidebar></app-sidebar>
+
+<div class="content-wrapper">
+<br>
+<br>
+<br>
+
+<section class="content-header">
+  <div class="container-fluid">
+      <div class="row mb-2">
+          <div class="col-sm-6">
+              <h1>Purchase List</h1>
+          </div>
+          <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Purchase List</li>
+              </ol>
+          </div>
+      </div>
+  </div>
+</section>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header border-transparent">
+              <h3 class="card-title">Purchase List</h3>
+              <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 250px;">
+                  <span class="input-group-append">Search By Date: </span>&nbsp;&nbsp;
+                  <input
+                    type="date"
+                    [(ngModel)]="searchDate"
+                    name="table_search"
+                    class="form-control"
+                    placeholder="Select Date"
+                    (input)="searchByDate()"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                      <tr>
+                        <th>Purchase Date</th>
+                        <th>Status</th>
+                        <th>Supplier Name</th>
+                        <th>Product Name</th>
+                        <th>Product Type</th>
+                        <th>Gross Price</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let pur of purchaseList">
+                        <td>{{ getYearOfPurchaseDate(pur) | date:'yyyy-MM-dd' }}</td>
+                        <td>
+                          <a href="" [routerLink]="['/getWarrantyService/', pur.purchaseId]">
+                            <span [ngClass]="{'badge badge-success': pur.status, 'badge badge-danger': !pur.status}">
+                              {{ pur.status ? 'Received' : 'Not Eligible' }}
+                            </span>
+                          </a>
+                        </td>
+                        <td>{{ pur.supplier.supplierName }}</td>
+                        <td>
+                          <span *ngFor="let product of pur.products">{{ product.productName }}<br></span>
+                        </td>
+                        <td>
+                          <span *ngFor="let product of pur.products">{{ product.productCategory }}<br></span>
+                        </td>
+                        <td>
+                          <span *ngFor="let product of pur.products">{{ product.grossCost }}<br></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+

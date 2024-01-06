@@ -157,6 +157,7 @@ export class PurchaseComponent implements OnInit{
     this.service.savePurchase(this.purchase)
       .subscribe((response) => {
         console.log('Purchase saved successfully:', response);
+        this.router.navigateByUrl("purchaseList");
         // Handle success or navigate to another page
       }, (error) => {
         console.error('Error occurred while saving purchase:', error);

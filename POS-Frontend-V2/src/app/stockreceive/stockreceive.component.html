@@ -1,0 +1,228 @@
+<app-sidebar></app-sidebar>
+<br>
+<br>
+<br>
+<div class="content-wrapper kanban">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1>Stock Receive Form</h1>
+          </div>
+          <div class="col-sm-6 d-none d-sm-block">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item active">Stock Receive</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content pb-3">
+      <div class="container-fluid h-100">
+        <div class="card card-row card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">
+                Purchase Information
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="card card-info card-outline">
+              <div class="card-header">
+                <h5 class="card-title">Vehicle Information</h5>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-link">#3</a>
+                  <a href="#" class="btn btn-tool">
+                    <i class="fas fa-pen"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+
+                <div class="form-group">
+                    <label>Purchased Vehicle</label>
+                    <select class="form-control" id="p-type" [(ngModel)]="selectedPurchaseId" (change)="onSelectChange()">
+                      <option value="" disabled selected>Choose Purchased Vehicle</option>
+                      <ng-container *ngFor="let purchase of purchaseList">
+                        <ng-container *ngFor="let product of purchase.products">
+                          <option [value]="purchase.purchaseId">{{ product.productName }}</option>
+                        </ng-container>
+                      </ng-container>
+                    </select>
+                  </div>
+                  
+                  
+
+                <div class="form-group">
+                    <label>Serial No:</label>
+                    {{ selectedProduct?.slNumber }}
+                </div>
+                <div class="form-group">
+                    <label>Registration No:</label>
+                    {{ selectedProduct?.registrationNo }}
+                </div>
+                <div class="form-group">
+                    <label>Chassis No:</label>
+                    {{ selectedProduct?.chassisNumber }}
+                </div>
+                <div class="form-group">
+                    <label>Engine No:</label>
+                    {{ selectedProduct?.engineNumber }}
+                </div>
+                <div class="form-group">
+                    <label>Year:</label>
+                    <!-- {{ selectedProduct?.yearOfManufacture }} -->
+                    {{  getYearOfSaleDate(selectedProduct) | date:'yyyy-MM-dd' }}
+                </div>
+                <div class="form-group">
+                    <label>Fuel Type:</label>
+                    {{ selectedProduct?.fuelType }}
+                </div>
+              </div>
+            </div>
+            <div class="card card-info card-outline">
+              <div class="card-header">
+                <h5 class="card-title">Car Information</h5>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-link">#4</a>
+                  <a href="#" class="btn btn-tool">
+                    <i class="fas fa-pen"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                    <label>Registration No</label>
+                    <input type="text" class="form-control" id="productName" placeholder="Registration No"
+                        >
+                </div>
+                <div class="form-group" >
+                    <label>Model</label>
+                    <input type="text" class="form-control" id="productName" placeholder="Model"
+                        >
+                </div>
+                <div class="form-group" >
+                    <label>Manufacturing Year</label>
+                    <input type="text" class="form-control" id="productName" placeholder="Manufacturing Year"
+                        >
+                </div>
+              </div>
+            </div>
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="card-title">Warranty Information</h5>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-link">#6</a>
+                  <a href="#" class="btn btn-tool">
+                    <i class="fas fa-pen"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                    <label>Invoice No</label>
+                    <input type="text" class="form-control" id="productName" placeholder="Invoice No"
+                       >
+                </div>
+                <div class="form-group">
+                    <label>Warranty Start Date</label>
+                    <input type="text" class="form-control" id="productName" placeholder="Warranty Start Date"
+                       >
+                </div>
+                <div class="form-group">
+                    <label>Warranty End Date</label>
+                    <input type="text" class="form-control" id="productName" placeholder="Warranty End Date">
+                </div>
+                <div class="form-group">
+                    <label>Service Taking Date</label>
+                    <input type="date" class="form-control" id="productName" placeholder="Service Taking Date"
+                        >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-row card-primary">
+          <div class="card-header">
+            <h3 class="card-title">
+              Available Service
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+                <label>Service Type</label>
+                <select class="form-control" id="p-type">
+                    <option value="" disabled selected>Choose Service Type</option>
+                    <option value="paint">Painting</option>
+                    <option value="denting">Denting</option>
+                    <option value="mechanical">Mechanical</option>
+                    <option value="electrical">Electrical</option> 
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Service Name</label>
+                <select class="form-control" id="p-type">
+                    <option value="" disabled selected>Choose Service Name</option>
+                    <option value="cmplete car paint">Complete Car Paint</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Station Wagon">Station Wagon</option>
+                    <option value="Pickup Truck">Pickup Truck</option>
+                    <option value="Minivan ">Minivan </option>
+                    <option value="Sports Cars">Sports Cars</option>
+                    <option value="Luxury Cars">Luxury Cars</option>
+                    <option value="Convertible">Convertible </option>
+                    <option value="Mini Truck">Mini Truck</option>
+                    <option value="Truck ">Truck </option>
+                    <option value="Sports Cars">Sports Cars</option>
+                </select>
+            </div>
+          </div>
+        </div>
+        <div class="card card-row card-default">
+          <div class="card-header bg-info">
+            <h3 class="card-title">
+              Billing Information
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="card card-light card-outline">
+              <div class="card-header">
+                <h5 class="card-title">Update Readme</h5>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-link">#2</a>
+                  <a href="#" class="btn btn-tool">
+                    <i class="fas fa-pen"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <p>
+                  
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="card card-row card-success">
+          <div class="card-header">
+            <h3 class="card-title">
+              Done
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="card-title">Create repo</h5>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-link">#1</a>
+                  <a href="#" class="btn btn-tool">
+                    <i class="fas fa-pen"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </section>
+  </div>

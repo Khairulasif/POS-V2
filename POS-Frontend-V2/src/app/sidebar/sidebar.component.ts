@@ -37,9 +37,9 @@ export class SidebarComponent implements OnInit{
     this.router.navigateByUrl("sale");
     this.activateNavItem('sale');
   }
-  navigateStock() {
-    this.router.navigateByUrl("stock");
-    this.activateNavItem('stock');
+  navigateStockReceive() {
+    this.router.navigateByUrl("stockReceive");
+    this.activateNavItem('stockReceive');
   }
   
   navigateSaleList() {

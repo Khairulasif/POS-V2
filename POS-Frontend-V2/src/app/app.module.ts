@@ -9,6 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { AddsupplierComponent } from './addsupplier/addsupplier.component';
+import { PurchaselistComponent } from './purchaselist/purchaselist.component';
+import { StockreceiveComponent } from './stockreceive/stockreceive.component';
 
 
 
@@ -18,7 +20,9 @@ import { AddsupplierComponent } from './addsupplier/addsupplier.component';
     DashboardComponent,
     SidebarComponent,
     PurchaseComponent,
-    AddsupplierComponent
+    AddsupplierComponent,
+    PurchaselistComponent,
+    StockreceiveComponent
    
     
 
