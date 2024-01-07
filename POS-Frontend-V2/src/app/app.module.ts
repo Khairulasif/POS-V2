@@ -11,6 +11,10 @@ import { PurchaseComponent } from './purchase/purchase.component';
 import { AddsupplierComponent } from './addsupplier/addsupplier.component';
 import { PurchaselistComponent } from './purchaselist/purchaselist.component';
 import { StockreceiveComponent } from './stockreceive/stockreceive.component';
+import { AvailableproductComponent } from './availableproduct/availableproduct.component';
+import { StocklistComponent } from './stocklist/stocklist.component';
+import { SaleComponent } from './sale/sale.component';
+
 
 
 
@@ -22,7 +26,11 @@ import { StockreceiveComponent } from './stockreceive/stockreceive.component';
     PurchaseComponent,
     AddsupplierComponent,
     PurchaselistComponent,
-    StockreceiveComponent
+    StockreceiveComponent,
+    AvailableproductComponent,
+    StocklistComponent,
+    SaleComponent,
+
    
     
 

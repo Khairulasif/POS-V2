@@ -3,226 +3,249 @@
 <br>
 <br>
 <div class="content-wrapper kanban">
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6">
-            <h1>Stock Receive Form</h1>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <h1>Stock Receive Form</h1>
+        </div>
+        <div class="col-sm-6 d-none d-sm-block">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item active">Stock Receive</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content pb-3">
+    <div class="container-fluid h-100">
+      <div class="card card-row card-secondary">
+        <div class="card-header">
+          <h3 class="card-title">
+            Purchase Information
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="card card-info card-outline">
+            <div class="card-header">
+              <h5 class="card-title">Vehicle Information</h5>
+              <div class="card-tools">
+                <a href="#" class="btn btn-tool btn-link">#3</a>
+                <a href="#" class="btn btn-tool">
+                  <i class="fas fa-pen"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+
+              <div class="form-group">
+                <label>Purchased Vehicle</label>
+                <select class="form-control" id="p-type" [(ngModel)]="selectedPurchaseId" (change)="onSelectChange()">
+                  <option value="" disabled selected>Choose Purchased Vehicle</option>
+                  <ng-container *ngFor="let purchase of purchaseList">
+                    <ng-container *ngFor="let product of purchase.products">
+                      <option [value]="purchase.purchaseId">{{ product.productName }}</option>
+                    </ng-container>
+                  </ng-container>
+                </select>
+              </div>
+
+
+
+              <div class="form-group">
+                <label>Serial No:</label>
+                {{ selectedProduct?.slNumber }}
+              </div>
+              <div class="form-group">
+                <label>Registration No:</label>
+                {{ selectedProduct?.registrationNo }}
+              </div>
+              <div class="form-group">
+                <label>Chassis No:</label>
+                {{ selectedProduct?.chassisNumber }}
+              </div>
+              <div class="form-group">
+                <label>Engine No:</label>
+                {{ selectedProduct?.engineNumber }}
+              </div>
+              <div class="form-group">
+                <label>Manufacturing Year:</label>
+                <!-- {{ selectedProduct?.yearOfManufacture }} -->
+                {{ getYearOfSaleDate(selectedProduct) | date:'yyyy-MM-dd' }}
+              </div>
+              <div class="form-group">
+                <label>Fuel Type:</label>
+                {{ selectedProduct?.fuelType }}
+              </div>
+            </div>
           </div>
-          <div class="col-sm-6 d-none d-sm-block">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Stock Receive</li>
-            </ol>
+          <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h5 class="card-title">Purchase Cost</h5>
+              <div class="card-tools">
+                <a href="#" class="btn btn-tool btn-link">#6</a>
+                <a href="#" class="btn btn-tool">
+                  <i class="fas fa-pen"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Trade Price:</label>
+                {{selectedProduct?.tradePrice}}
+              </div>
+              <div class="form-group">
+                <label>Gross Price</label>
+                {{selectedProduct?.grossCost}}
+              </div>
+            </div>
+          </div>
+          <div class="card card-info card-outline">
+            <div class="card-header">
+              <h5 class="card-title">Supplier Information</h5>
+              <div class="card-tools">
+                <a href="#" class="btn btn-tool btn-link">#4</a>
+                <a href="#" class="btn btn-tool">
+                  <i class="fas fa-pen"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Supplier Name:</label>
+                {{selectedSupplier?.supplierName}}
+              </div>
+              <div class="form-group">
+                <label>Contact Person:</label>
+                {{selectedSupplier?.contactPerson}}
+              </div>
+              <div class="form-group">
+                <label>Email:</label>
+                {{selectedSupplier?.email}}
+              </div>
+              <div class="form-group">
+                <label>Phone:</label>
+                {{selectedSupplier?.phoneNumber}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="card card-row card-primary">
+        <div class="card-header">
+          <h3 class="card-title">
+            Add Additional Cost
+          </h3>
+        </div>
+        
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label>Product Type</label>
+              <input type="text" class="form-control" id="productType" placeholder="Product Type"
+                     [ngModel]="costForm.product?.productCategory" (ngModelChange)="setProductCategory($event)" name="productType">
+            </div>
+            
+            
+            
+          <div class="form-group">
+            <label>Import Cost</label>
+            <input type="number" class="form-control" id="importCost" placeholder="Import Cost"
+            [(ngModel)]= "costForm.importCost" name="importCost">
+          </div>
+          <div class="form-group">
+            <label>C&F Cost</label>
+            <input type="number" class="form-control" id="cAndFCost" placeholder="C&F Cost" 
+            [(ngModel)]= "costForm.cAndFCost" name="cAndFCost">
+          </div>
+          <div class="form-group">
+            <label>Transport Cost</label>
+            <input type="number" class="form-control" id="transportCost" placeholder="Transport Cost"
+            [(ngModel)]= "costForm.transportCost" name="transportCost">
+          </div>
+          <div class="form-group">
+            <label>Document Cost</label>
+            <input type="number" class="form-control" id="documentCost" placeholder="Document Cost"
+            [(ngModel)]= "costForm.documentCost" name="documentCost">
+          </div>
+          <div class="form-group">
+            <label>Repair Cost</label>
+            <input type="number" class="form-control" id="repairCost" placeholder="Repair Cost"
+            [(ngModel)]= "costForm.repairCost" name="repairCost">
+          </div>
+          <div class="form-group">
+            <label>Net Cost</label>
+            <input type="number" class="form-control" id="netCost" placeholder="Net Cost"  [ngModel]="calculateNetCost()" (ngModelChange)="updateNetCost($event)" name="netCost">
+          </div>
+          <div class="form-group">
+            <label>MRP</label>
+            <input type="number" class="form-control" id="mrp" placeholder="Maximum Retail Price" [(ngModel)]= "costForm.mrp" name="mrp">
+          </div>
+          <div class="form-group">
+            <label>Maximum discount</label>
+            <input type="number" class="form-control" id="maxDiscount" placeholder="Maximum discount" [(ngModel)]= "costForm.maxDiscount" name="maxDiscount">
+          </div>
+          <div class="form-group">
+            <label>Is Installment Available?</label>
+            <div class="custom-control custom-radio">
+              <input class="custom-control-input" type="radio" id="installmentYes" [(ngModel)]="costForm.installment" name="installment" [value]="true">
+              <label for="installmentYes" class="custom-control-label">Yes</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input class="custom-control-input" type="radio" id="installmentNo" [(ngModel)]="costForm.installment" name="installment" [value]="false">
+              <label for="installmentNo" class="custom-control-label">No</label>
+            </div>
+          </div>
+          
+          
+          <div class="card-footer d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary w-50 mx-auto">Submit</button>
+        </div>
+        </form>
+        </div>
+      
+      </div>
+      <div class="card card-row card-default">
+        <div class="card-header bg-info">
+          <h3 class="card-title">
+            MRP and Discount
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="card card-light card-outline">
+            <div class="card-header">
+              <h5 class="card-title">Confirm Product Rate</h5>
+              <div class="card-tools">
+                <a href="#" class="btn btn-tool btn-link">#2</a>
+                <a href="#" class="btn btn-tool">
+                  <i class="fas fa-pen"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>MRP:</label>
+                {{ costForm?.mrp }}
+              </div>
+              <div class="form-group">
+                <label>Maximum Discount:</label>
+                {{ costForm?.maxDiscount }}
+              </div>
+              <div class="form-group" *ngIf="costForm?.mrp !== null && costForm?.maxDiscount !== null">
+                <label>After Discount:</label>
+                {{ (costForm?.mrp || 0) - (costForm?.maxDiscount || 0) }}
+              </div>
+            </div>
+            
+            
+            
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="content pb-3">
-      <div class="container-fluid h-100">
-        <div class="card card-row card-secondary">
-          <div class="card-header">
-            <h3 class="card-title">
-                Purchase Information
-            </h3>
-          </div>
-          <div class="card-body">
-            <div class="card card-info card-outline">
-              <div class="card-header">
-                <h5 class="card-title">Vehicle Information</h5>
-                <div class="card-tools">
-                  <a href="#" class="btn btn-tool btn-link">#3</a>
-                  <a href="#" class="btn btn-tool">
-                    <i class="fas fa-pen"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body">
-
-                <div class="form-group">
-                    <label>Purchased Vehicle</label>
-                    <select class="form-control" id="p-type" [(ngModel)]="selectedPurchaseId" (change)="onSelectChange()">
-                      <option value="" disabled selected>Choose Purchased Vehicle</option>
-                      <ng-container *ngFor="let purchase of purchaseList">
-                        <ng-container *ngFor="let product of purchase.products">
-                          <option [value]="purchase.purchaseId">{{ product.productName }}</option>
-                        </ng-container>
-                      </ng-container>
-                    </select>
-                  </div>
-                  
-                  
-
-                <div class="form-group">
-                    <label>Serial No:</label>
-                    {{ selectedProduct?.slNumber }}
-                </div>
-                <div class="form-group">
-                    <label>Registration No:</label>
-                    {{ selectedProduct?.registrationNo }}
-                </div>
-                <div class="form-group">
-                    <label>Chassis No:</label>
-                    {{ selectedProduct?.chassisNumber }}
-                </div>
-                <div class="form-group">
-                    <label>Engine No:</label>
-                    {{ selectedProduct?.engineNumber }}
-                </div>
-                <div class="form-group">
-                    <label>Year:</label>
-                    <!-- {{ selectedProduct?.yearOfManufacture }} -->
-                    {{  getYearOfSaleDate(selectedProduct) | date:'yyyy-MM-dd' }}
-                </div>
-                <div class="form-group">
-                    <label>Fuel Type:</label>
-                    {{ selectedProduct?.fuelType }}
-                </div>
-              </div>
-            </div>
-            <div class="card card-info card-outline">
-              <div class="card-header">
-                <h5 class="card-title">Car Information</h5>
-                <div class="card-tools">
-                  <a href="#" class="btn btn-tool btn-link">#4</a>
-                  <a href="#" class="btn btn-tool">
-                    <i class="fas fa-pen"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="form-group">
-                    <label>Registration No</label>
-                    <input type="text" class="form-control" id="productName" placeholder="Registration No"
-                        >
-                </div>
-                <div class="form-group" >
-                    <label>Model</label>
-                    <input type="text" class="form-control" id="productName" placeholder="Model"
-                        >
-                </div>
-                <div class="form-group" >
-                    <label>Manufacturing Year</label>
-                    <input type="text" class="form-control" id="productName" placeholder="Manufacturing Year"
-                        >
-                </div>
-              </div>
-            </div>
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="card-title">Warranty Information</h5>
-                <div class="card-tools">
-                  <a href="#" class="btn btn-tool btn-link">#6</a>
-                  <a href="#" class="btn btn-tool">
-                    <i class="fas fa-pen"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="form-group">
-                    <label>Invoice No</label>
-                    <input type="text" class="form-control" id="productName" placeholder="Invoice No"
-                       >
-                </div>
-                <div class="form-group">
-                    <label>Warranty Start Date</label>
-                    <input type="text" class="form-control" id="productName" placeholder="Warranty Start Date"
-                       >
-                </div>
-                <div class="form-group">
-                    <label>Warranty End Date</label>
-                    <input type="text" class="form-control" id="productName" placeholder="Warranty End Date">
-                </div>
-                <div class="form-group">
-                    <label>Service Taking Date</label>
-                    <input type="date" class="form-control" id="productName" placeholder="Service Taking Date"
-                        >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card card-row card-primary">
-          <div class="card-header">
-            <h3 class="card-title">
-              Available Service
-            </h3>
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-                <label>Service Type</label>
-                <select class="form-control" id="p-type">
-                    <option value="" disabled selected>Choose Service Type</option>
-                    <option value="paint">Painting</option>
-                    <option value="denting">Denting</option>
-                    <option value="mechanical">Mechanical</option>
-                    <option value="electrical">Electrical</option> 
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Service Name</label>
-                <select class="form-control" id="p-type">
-                    <option value="" disabled selected>Choose Service Name</option>
-                    <option value="cmplete car paint">Complete Car Paint</option>
-                    <option value="SUV">SUV</option>
-                    <option value="Station Wagon">Station Wagon</option>
-                    <option value="Pickup Truck">Pickup Truck</option>
-                    <option value="Minivan ">Minivan </option>
-                    <option value="Sports Cars">Sports Cars</option>
-                    <option value="Luxury Cars">Luxury Cars</option>
-                    <option value="Convertible">Convertible </option>
-                    <option value="Mini Truck">Mini Truck</option>
-                    <option value="Truck ">Truck </option>
-                    <option value="Sports Cars">Sports Cars</option>
-                </select>
-            </div>
-          </div>
-        </div>
-        <div class="card card-row card-default">
-          <div class="card-header bg-info">
-            <h3 class="card-title">
-              Billing Information
-            </h3>
-          </div>
-          <div class="card-body">
-            <div class="card card-light card-outline">
-              <div class="card-header">
-                <h5 class="card-title">Update Readme</h5>
-                <div class="card-tools">
-                  <a href="#" class="btn btn-tool btn-link">#2</a>
-                  <a href="#" class="btn btn-tool">
-                    <i class="fas fa-pen"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="card card-row card-success">
-          <div class="card-header">
-            <h3 class="card-title">
-              Done
-            </h3>
-          </div>
-          <div class="card-body">
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="card-title">Create repo</h5>
-                <div class="card-tools">
-                  <a href="#" class="btn btn-tool btn-link">#1</a>
-                  <a href="#" class="btn btn-tool">
-                    <i class="fas fa-pen"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      </div>
-    </section>
-  </div>
+      
+    </div>
+  </section>
+</div>

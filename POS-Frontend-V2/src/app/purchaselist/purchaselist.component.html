@@ -63,7 +63,7 @@
                         <td>
                           <a href="" [routerLink]="['/getWarrantyService/', pur.purchaseId]">
                             <span [ngClass]="{'badge badge-success': pur.status, 'badge badge-danger': !pur.status}">
-                              {{ pur.status ? 'Received' : 'Not Eligible' }}
+                              {{ pur.status ? 'Received' : 'Not Received' }}
                             </span>
                           </a>
                         </td>

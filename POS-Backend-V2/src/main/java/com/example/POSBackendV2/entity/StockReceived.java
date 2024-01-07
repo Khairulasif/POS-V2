@@ -21,7 +21,8 @@ public class StockReceived {
     private  long repairCost;
     private long  mrp;
     private long  maxDiscount;
-    private boolean  instalment;
+    private long  netCost;
+    private boolean installment = false;;
 
     @ManyToOne
     @JoinColumn(name = "productId")

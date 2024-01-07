@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Purchase } from './PurchaseListModel';
 import { DashboardService } from './dashboard.service';
+import { StockReceived } from './StockReceiveModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +13,9 @@ export class DashboardComponent implements OnInit{
 
   purchaseList: Purchase[] = [];
 
-  constructor(private service: DashboardService) {}
+  stockList: StockReceived[] = [];
+
+  constructor(private service: DashboardService, private router: Router,) {}
 
   ngOnInit(): void {
    
@@ -24,6 +28,22 @@ export class DashboardComponent implements OnInit{
       console.log(this.purchaseList);
       
     });
+
+    this.service.getAllStock().subscribe((data: StockReceived[]) => {
+      this.stockList = data;
+      console.log(this.stockList);
+      
+    });
+  }
+
+  getYearOfSaleDate(sale: StockReceived): string | null {
+    // Assuming yearOfManufacture is a property in the productDetails object
+    return sale?.product.yearOfManufacture || null;
+  }
+
+  navigateToList() {
+    this.router.navigateByUrl("stockList");
+    
   }
 
 }

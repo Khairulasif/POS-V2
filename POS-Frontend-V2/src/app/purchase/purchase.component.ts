@@ -37,7 +37,7 @@ export class PurchaseComponent implements OnInit{
       {
         productId: 0,
         slNumber: undefined,
-        productCategory: 'SEDAN',
+        productCategory: '',
         productName: '',
         registrationNo: '',
         chassisNumber: '',
