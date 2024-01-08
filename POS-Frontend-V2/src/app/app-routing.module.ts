@@ -7,6 +7,7 @@ import { PurchaselistComponent } from './purchaselist/purchaselist.component';
 import { StockreceiveComponent } from './stockreceive/stockreceive.component';
 import { StocklistComponent } from './stocklist/stocklist.component';
 import { SaleComponent } from './sale/sale.component';
+import { ShowproductComponent } from './showproduct/showproduct.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: "stockReceive" , component: StockreceiveComponent},
   {path: "stockList" , component: StocklistComponent},
   {path: "sale" , component: SaleComponent},
+  {path: 'showProduct/:postId/edit', component: ShowproductComponent},
   {path: " " , component: DashboardComponent},
   
 

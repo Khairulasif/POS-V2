@@ -14,6 +14,7 @@ import { StockreceiveComponent } from './stockreceive/stockreceive.component';
 import { AvailableproductComponent } from './availableproduct/availableproduct.component';
 import { StocklistComponent } from './stocklist/stocklist.component';
 import { SaleComponent } from './sale/sale.component';
+import { ShowproductComponent } from './showproduct/showproduct.component';
 
 
 
@@ -30,6 +31,7 @@ import { SaleComponent } from './sale/sale.component';
     AvailableproductComponent,
     StocklistComponent,
     SaleComponent,
+    ShowproductComponent,
 
    
     

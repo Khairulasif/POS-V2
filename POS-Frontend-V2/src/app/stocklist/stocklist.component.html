@@ -47,6 +47,7 @@
                           <th>Price</th>
                           <th>Model</th>
                           <th>Color</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -56,6 +57,8 @@
                           <td>{{stock.mrp}}</td>
                           <td>{{getYearOfManufacture(stock) | date:'yyyy'}}</td>
                           <td>{{stock.product.exteriorColor}}</td>
+                          <td><a href="" [routerLink]="['/showProduct/', stock.srid, 'edit']"><span class="badge badge-success">Show Details</span></a>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
