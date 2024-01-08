@@ -3,6 +3,7 @@ import { StockreceiveService } from './stockreceive.service';
 import { Product, Purchase, Supplier } from './PurchaseListModel';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { StockReceived } from './StockReceiveModel';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class StockreceiveComponent  implements OnInit{
   };
  
 
-  constructor(private service: StockreceiveService, private fb: FormBuilder,) {}
+  constructor(private service: StockreceiveService, private fb: FormBuilder, private router: Router,) {}
 
   ngOnInit(): void {
     this.service.getPurchasesByStatus().subscribe(
@@ -133,10 +134,11 @@ updateNetCost(value: number) {
     this.costForm.netCost = this.calculateNetCost();
     console.log('Form data to be saved:', this.costForm);
 
-    // Call your service method to save the data
+    
     this.service.saveStockReceivedData(this.costForm).subscribe(
       (response) => {
         console.log('Data saved successfully:', response);
+        this.router.navigateByUrl("purchaseList");
         // Handle success, e.g., show a success message
       },
       (error) => {

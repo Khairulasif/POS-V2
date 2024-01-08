@@ -6,6 +6,7 @@ import { AddsupplierComponent } from './addsupplier/addsupplier.component';
 import { PurchaselistComponent } from './purchaselist/purchaselist.component';
 import { StockreceiveComponent } from './stockreceive/stockreceive.component';
 import { StocklistComponent } from './stocklist/stocklist.component';
+import { SaleComponent } from './sale/sale.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: "purchaseList" , component: PurchaselistComponent},
   {path: "stockReceive" , component: StockreceiveComponent},
   {path: "stockList" , component: StocklistComponent},
+  {path: "sale" , component: SaleComponent},
   {path: " " , component: DashboardComponent},
   
 
