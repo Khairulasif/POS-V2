@@ -8,6 +8,8 @@ import com.example.POSBackendV2.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StockService {
        private final StockRepository stockRepository;
@@ -19,6 +21,9 @@ public class StockService {
         this.stockReceivedRepository = stockReceivedRepository;
     }
 
+    public List<Stock> getAllStock() {
+        return stockRepository.findAll();
+    }
 //    public void stockReceivedAndUpdateStock(StockReceived stockReceived) {
 //        ProductCategory receivedProductCategory = stockReceived.getProduct().getProductCategory();
 //        Stock stock = stockRepository.findByProductCategory(receivedProductCategory);

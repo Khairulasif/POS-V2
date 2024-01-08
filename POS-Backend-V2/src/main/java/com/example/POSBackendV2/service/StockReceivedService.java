@@ -29,5 +29,8 @@ public class StockReceivedService {
     public StockReceived stockReceivedGetById(Long id) {
         return this.stockReceivedRepository.findById(id).orElse(new StockReceived());
     }
+    public List<StockReceived> getAllStocksWithStatusTrue() {
+        return stockReceivedRepository.findByStockStatus(true);
+    }
 
 }
