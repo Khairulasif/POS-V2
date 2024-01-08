@@ -23,6 +23,8 @@ public class StockReceived {
     private long  maxDiscount;
     private long  netCost;
     private boolean installment = false;;
+    private boolean stockStatus = true;
+
 
     @ManyToOne
     @JoinColumn(name = "productId")

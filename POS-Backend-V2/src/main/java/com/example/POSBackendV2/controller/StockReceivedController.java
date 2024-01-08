@@ -33,6 +33,7 @@ public class StockReceivedController {
     @Autowired
     PurchaseService purchaseService;
 
+
     @PostMapping("/save")
     public ResponseEntity<StockReceived> insertStockReceived(@RequestBody StockReceived stockReceived) {
         StockReceived savedStockReceived = stockReceivedService.saveStockReceived(stockReceived);
@@ -58,5 +59,12 @@ public class StockReceivedController {
         StockReceived stockReceived = this.stockReceivedService.stockReceivedGetById(id);
         return stockReceived;
     }
+    @GetMapping("/status-true")
+    public ResponseEntity<List<StockReceived>> getAllStocksWithStatusTrue() {
+        List<StockReceived> stockReceivedList = stockReceivedService.getAllStocksWithStatusTrue();
+        return new ResponseEntity<>(stockReceivedList, HttpStatus.OK);
+    }
+
+
 
 }

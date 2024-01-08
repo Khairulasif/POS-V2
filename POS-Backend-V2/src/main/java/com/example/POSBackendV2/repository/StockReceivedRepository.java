@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface StockReceivedRepository extends JpaRepository<StockReceived,Long> {
-
+    List<StockReceived> findByStockStatus(boolean stockStatus);
 }
