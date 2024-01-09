@@ -37,5 +37,5 @@ export interface Product {
     installment: boolean;
     product: Product;
     candFCost: number;
-    srid: number;
+    sRId: number;
   }

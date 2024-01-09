@@ -39,7 +39,14 @@ export class SaleComponent implements OnInit {
 
     });
 
-
+    this.saleForm.patchValue({
+      stockReceived: {
+        sRId: this.product.sRId, // Fix the typo here
+        product: {
+          productCategory: this.product.product.productCategory,
+        },
+      },
+    });
 
     this.createForm();
 
@@ -89,19 +96,23 @@ export class SaleComponent implements OnInit {
   
 
 
-  saveData(): void {
-    const saleData: SaleModel = this.saleForm.value;
+  onSubmit() {
+    if (this.saleForm.valid) {
+      const formData = this.saleForm.value;
 
-    this.services.saveSale(saleData).subscribe(
-      (response) => {
-        // Handle success, e.g., navigate to a confirmation page
-        this.router.navigate(['/confirmation']);
-      },
-      (error) => {
-        // Handle error, e.g., display an error message
-        console.error('Error saving sale:', error);
-      }
-    );
+      console.log(formData);
+      
+     
+      this.services.saveSale(formData).subscribe(
+        response => {
+          console.log('Data saved successfully', response);
+          this.router.navigateByUrl("saleList");
+        },
+        error => {
+          console.error('Error saving data', error);
+        }
+      );
+    }
   }
 
 

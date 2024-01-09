@@ -19,7 +19,7 @@
         </div>
     </section>
     <section class="content">
-        <form [formGroup]= "saleForm" (ngSubmit)="saveData()">
+        <form [formGroup]= "saleForm" (ngSubmit)="onSubmit()">
             <!-- Product Section -->
             <div class="container-fluid">
                 <div class="card card-default">
@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6" formGroupName="sale">
                                 <div class="form-group">
                                     <label>Sale Date</label>
                                     <input type="date" class="form-control" id="saleDate" placeholder="Sale Date"
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group" formGroupName="sale">
                                     <label>Price</label>
                                     <input type="number" class="form-control" id="price" placeholder="Price"
                                         formControlName="price">
@@ -53,14 +53,14 @@
                             
 
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group" formGroupName="sale">
                                     <label>Discount</label>
                                     <input type="number" class="form-control" id="discount" placeholder="Discount"
                                         formControlName="discount">
                                 </div>
                             </div>
                             <div class="col-md-6" >
-                                <div class="form-group">
+                                <div class="form-group" formGroupName="sale">
                                     <label>Total Amount</label>
                                     <input type="number" class="form-control" id="totalAmount"
                                         placeholder="Total Amount" formControlName="totalAmount">
@@ -90,7 +90,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <!-- checkbox -->
-                                <div class="form-group" >
+                                <div class="form-group" formGroupName="sale">
                                   <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="Agreed" formControlName="terms1" checked>
                                     <label for="customCheckbox1" class="custom-control-label">Our warranty offers coverage for a specified duration, ranging from 30 days to one year, ensuring buyers have peace of mind for an agreed-upon timeframe.</label>
@@ -140,7 +140,7 @@
                             
 
                             <div class="col-md-12">
-                                <div class="form-group">
+                                <div class="form-group" formGroupName="sale">
                                     <label>Comment</label>
                                     <textarea class="form-control" id="comment" placeholder="Comment"
                                         formControlName="comment"></textarea>
@@ -170,33 +170,33 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group" >
+                                <div class="form-group" formGroupName="customer">
                                     <label>First Name</label>
                                     <input type="text" class="form-control" id="fname" placeholder="First Name"
-                                        formControlName="customer.firstName">
+                                        formControlName="firstName">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" >
+                                <div class="form-group" formGroupName="customer">
                                     <label>Last Name</label>
                                     <input type="text" class="form-control" id="lname" placeholder="Last Name"
-                                        formControlName="customer.lastName">
+                                        formControlName="lastName">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group" >
+                                <div class="form-group" formGroupName="customer">
                                     <label>Email</label>
                                     <input type="text" class="form-control" id="email" placeholder="Email"
-                                        formControlName="saleForm.customer.email">
+                                        formControlName="email">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" >
+                                <div class="form-group" formGroupName="customer">
                                     <label>Phone</label>
                                     <input type="text" class="form-control" id="phone" placeholder="Phone"
-                                        formControlName="customer.phoneNumber">
+                                        formControlName="phoneNumber">
                                 </div>
                             </div>
                         </div>
