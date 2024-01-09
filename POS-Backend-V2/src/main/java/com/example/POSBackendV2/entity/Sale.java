@@ -32,6 +32,7 @@ public class Sale {
 
     @Column(name = "total_amount")
     private int totalAmount;
+
     private  String terms1;
     private  String terms2;
     private  String terms3;
@@ -44,7 +45,7 @@ public class Sale {
     private  String terms10;
     private  String comment;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "sRId")
     private StockReceived stockReceived;
 

@@ -1,0 +1,215 @@
+<app-sidebar></app-sidebar>
+
+<div class="content-wrapper">
+    <br>
+    <br>
+    <br>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Sale Information</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item active">Sale Information</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <form [formGroup]= "saleForm" (ngSubmit)="saveData()">
+            <!-- Product Section -->
+            <div class="container-fluid">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">Selling Information</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Sale Date</label>
+                                    <input type="date" class="form-control" id="saleDate" placeholder="Sale Date"
+                                        formControlName="saleDate">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="number" class="form-control" id="price" placeholder="Price"
+                                        formControlName="price">
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Discount</label>
+                                    <input type="number" class="form-control" id="discount" placeholder="Discount"
+                                        formControlName="discount">
+                                </div>
+                            </div>
+                            <div class="col-md-6" >
+                                <div class="form-group">
+                                    <label>Total Amount</label>
+                                    <input type="number" class="form-control" id="totalAmount"
+                                        placeholder="Total Amount" formControlName="totalAmount">
+                                </div>
+                            </div>
+
+
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">Terms And conditions</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- checkbox -->
+                                <div class="form-group" >
+                                  <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="Agreed" formControlName="terms1" checked>
+                                    <label for="customCheckbox1" class="custom-control-label">Our warranty offers coverage for a specified duration, ranging from 30 days to one year, ensuring buyers have peace of mind for an agreed-upon timeframe.</label>
+                                  </div>
+                                  <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox2" value="Agreed" checked formControlName="terms2">
+                                    <label for="customCheckbox2" class="custom-control-label">The warranty covers essential components, including but not limited to the engine, transmission, and major systems critical to the vehicle's performance.</label>
+                                  </div>
+                                  <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox3" value="Agreed" checked formControlName="terms3">
+                                    <label for="customCheckbox3" class="custom-control-label">We transparently outline any exceptions to the warranty coverage, such as normal wear and tear, routine maintenance, and damages resulting from accidents or misuse.</label>
+                                  </div>
+                                  <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox4" value="Agreed" checked formControlName="terms4">
+                                    <label for="customCheckbox4" class="custom-control-label">Our warranty terms specify whether the coverage is transferable to subsequent owners, providing clarity on the continuity of protection beyond the initial purchase.</label>
+                                  </div>
+                                  <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox5" value="Agreed" checked formControlName="terms5">
+                                    <label for="customCheckbox5" class="custom-control-label">In the event of a warranty claim, buyers are guided through a clear and efficient process, including contacting us, providing proof of purchase, and utilizing authorized repair facilities for prompt resolution.</label>
+                                  </div>
+                                  <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox6" value="Agreed" checked formControlName="terms6">
+                                    <label for="customCheckbox6" class="custom-control-label">We define the responsibilities regarding repair costs, clarifying whether the seller or buyer is responsible for covering expenses related to warranted repairs during the specified period.</label>
+                                  </div>
+                                  <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox7" value="Agreed" checked formControlName="terms7">
+                                    <label for="customCheckbox7" class="custom-control-label">Our terms set clear limitations on the extent of the seller's liability, establishing a framework for the amount the seller is obligated to pay for covered repairs.</label>
+                                  </div>
+                                  <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox8" value="Agreed" checked formControlName="terms8">
+                                    <label for="customCheckbox8" class="custom-control-label">Buyers are informed about the impact of unauthorized modifications or repairs, specifying conditions under which the warranty may be voided.</label>
+                                  </div>
+                                  <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox9" value="Agreed" checked formControlName="terms9">
+                                    <label for="customCheckbox9" class="custom-control-label">To maintain eligibility for warranty coverage, buyers are required to keep and provide specific documentation, ensuring a straightforward process for both parties.</label>
+                                  </div>
+                                  <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox10" value="Agreed" checked formControlName="terms10">
+                                    <label for="customCheckbox10" class="custom-control-label">Our warranty terms are crafted to align with local laws and regulations governing vehicle sales and warranties, providing a legally compliant framework for our buyers.</label>
+                                  </div>
+                                </div>
+                              </div>
+                           
+                           
+                        </div>
+                        <div class="row">
+                            
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Comment</label>
+                                    <textarea class="form-control" id="comment" placeholder="Comment"
+                                        formControlName="comment"></textarea>
+                                </div>
+                            </div>
+                            
+
+
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details Section -->
+            <div class="container-fluid">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">Customer Details</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control" id="fname" placeholder="First Name"
+                                        formControlName="customer.firstName">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" id="lname" placeholder="Last Name"
+                                        formControlName="customer.lastName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Email"
+                                        formControlName="saleForm.customer.email">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label>Phone</label>
+                                    <input type="text" class="form-control" id="phone" placeholder="Phone"
+                                        formControlName="customer.phoneNumber">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-footer d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary w-50 mx-auto">Submit</button>
+            </div>
+        </form>
+        <!-- <pre>{{ saleForm.value | json }}</pre> -->
+    </section>
+</div>

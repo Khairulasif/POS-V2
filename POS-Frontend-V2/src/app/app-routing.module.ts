@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: "purchaseList" , component: PurchaselistComponent},
   {path: "stockReceive" , component: StockreceiveComponent},
   {path: "stockList" , component: StocklistComponent},
-  {path: "sale" , component: SaleComponent},
+  {path: "sale/:postId/edit" , component: SaleComponent},
   {path: 'showProduct/:postId/edit', component: ShowproductComponent},
   {path: " " , component: DashboardComponent},
   
