@@ -30,34 +30,20 @@ export class SaleComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder) { }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
+      this.id = this.route.snapshot.params['postId'];
+      this.services.find(this.id).subscribe((task: StockReceived) => {
+        this.product = task;
+        console.log("------",this.product);
+        this.createForm();
+      this.assignValue() ;
+       
+      });
 
-    this.id = this.route.snapshot.params['postId'];
-    this.services.find(this.id).subscribe((task: StockReceived) => {
-      this.product = task
-      console.log(this.product);
-
-    });
-
-    this.saleForm.patchValue({
-      stockReceived: {
-        sRId: this.product.sRId, // Fix the typo here
-        product: {
-          productCategory: this.product.product.productCategory,
-        },
-      },
-    });
-
-    this.createForm();
-
-    // this.saleForm.patchValue({
-    //   stockReceived: {
-    //     sRId: this.product?.srid,
-    //     productCategory: this.product?.product?.productCategory,
-    //   },
-    // });
-
-  }
+      this.createForm();
+      this.assignValue() ;// Move createForm inside the subscription block
+    }
+    
 
 
   createForm(): void {
@@ -82,7 +68,7 @@ export class SaleComponent implements OnInit {
       stockReceived: this.fb.group({
         sRId: [],
         product: this.fb.group({
-          productCategory: [],
+          productCategory: [''],
         }),
       }),
       customer: this.fb.group({
@@ -92,7 +78,22 @@ export class SaleComponent implements OnInit {
         phoneNumber: [''],
       }),
     });
+    
   }
+
+
+  assignValue() {
+    
+    this.saleForm.patchValue({
+      sale: {
+        totalAmount: this.product?.mrp,
+      },
+    });
+   
+  } 
+  
+  
+  
   
 
 

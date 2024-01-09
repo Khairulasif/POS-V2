@@ -69,7 +69,7 @@ export class SaleService {
     
     console.log('Request Body:', requestBody);
   
-    return this.httpService.post<any>(`${this.url}/save`, requestBody, { headers });
+    return this.httpService.post<any>(`${this.urls}/save`, requestBody, { headers });
   }
   
  
